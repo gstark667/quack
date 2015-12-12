@@ -1,5 +1,5 @@
 var net = require('net');
-var clients = [];
+var clients = {};
 
 var server = net.createServer(function(socket) {
    socket.user = -1;
@@ -13,19 +13,18 @@ var server = net.createServer(function(socket) {
             return;
          }
 
-         socket.user = clients.length;
-         clients.push({"name": values[1], "socket": socket});
-         console.log(clients);
+         socket.user = values[1];
+         clients[values[1]] = socket;
       }
       else if (values[0] == 'send_message')
       {
-         console.log(values);
+         console.log(socket.user + ' sent message: ' + values[2]);
+         clients[values[1]].write('recv_message:' + socket.user + ':' + values[2]);
       }
-      console.log(clients[socket.user] + ':' + data.toString());
    });
 
    socket.on('close', function(data) {
-      clients.pop(socket.user);
+      delete clients[socket.user];
       console.log('User Disconnecting');
    });
 });

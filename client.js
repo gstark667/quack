@@ -2,25 +2,31 @@ var fs = require('fs');
 var osenv = require('osenv');
 var net = require('net');
 
-var friends = [];
-var servers = [];
 var user = {};
+var servers = [];
+var friends = [];
+
+var config_path = osenv.home() + '/.quack/client-config.json';
 
 function load_config() {
-   var config = JSON.parse(fs.readFileSync(osenv.home() + '/.duckling/client-config.json', 'utf-8'));
-   user['name'] = config.user['name'];
-
-   for (x in config.friends) {
-      if (friends.indexOf(config.friends[x]) == -1) {
-         friends.push(config.friends[x]);
-      }
-   }
+   var config = JSON.parse(fs.readFileSync(osenv.home() + '/.quack/client-config.json', 'utf-8'));
+   user = config.user;
 
    for (x in config.servers) {
       if (servers.indexOf(config.servers[x]) == -1) {
          servers.push(config.servers[x]);
       }
    }
+
+   for (x in config.friends) {
+      if (friends.indexOf(config.friends[x]) == -1) {
+         friends.push(config.friends[x]);
+      }
+   }
+}
+
+function save_config() {
+   fs.writeFileSync(config_path, JSON.stringify({"user": user, "friends": friends, "servers": servers}));
 }
 
 function is_friend(name) {
@@ -29,6 +35,10 @@ function is_friend(name) {
          return true;
    }
    return false;
+}
+
+function add_friend(name) {
+   
 }
 
 var client = new net.Socket();
@@ -41,7 +51,6 @@ client.on('data', function(data) {
    console.log('Received: ' + data.toString());
 
    values = data.toString().split(':');
-   console.log(values[1]);
    if (values[0] == 'is_friend')
    {
       var return_value = "n";
@@ -51,12 +60,21 @@ client.on('data', function(data) {
       }
       client.write(return_value);
    }
-
+   else if(values[0] == 'recv_message')
+   {
+      console.log(values[2]);
+   }
 });
 
 client.on('close', function() {
    console.log('Connection Closed');
 });
 
+function quit() {
+   client.destroy();
+   save_config();
+}
+
 load_config();
-client.write('send_message:hello world\:test');
+client.write('user_connect:' + user['name']);
+client.write('send_message:octalus:hello world\:test');
