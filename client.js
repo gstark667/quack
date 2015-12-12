@@ -38,7 +38,8 @@ function is_friend(name) {
 }
 
 function add_friend(name) {
-   
+   friends.push({"name": name});
+   save_config();
 }
 
 var client = new net.Socket();
