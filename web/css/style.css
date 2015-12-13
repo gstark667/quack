@@ -1,0 +1,49 @@
+body {
+   background: #292929;
+   color:      #ffffff;
+   font-family: Verdana,sans-serif;
+   font-size: 18px;
+   padding: 0;
+   margin:  0;
+}
+
+a {
+   color: inherit;
+   text-decoration: inherit;
+}
+
+.navbar {
+   display: inline;
+   border-bottom: thin solid #000000;
+   overflow: auto;
+}
+
+.navitem {
+   float: left;
+   width: 100px;
+   padding: 16px;
+   margin:  0;
+}
+
+.navitem-selected {
+   float: left;
+   width: 100px;
+   padding: 16px;
+   margin:  0;
+   background-color: #FE9720;
+}
+
+.navitem:hover {
+   background: #101010;
+}
+
+.sidebar {
+   overflow-y: scroll;
+   overflow-x: hidden; height: 100%;
+   width:  100px;
+}
+
+.clear {
+   border-top: thin solid #000000;
+   clear: left;
+}
