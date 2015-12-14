@@ -5,6 +5,7 @@ body {
    font-size: 18px;
    padding: 0;
    margin:  0;
+   height:100%;
 }
 
 a {
@@ -19,6 +20,12 @@ a {
    width: 100%;
 }
 
+.navbar-bg {
+   width: 100%;
+   height: 54px;
+   box-shadow: 0 0px 5px #000000;
+}
+
 .navitem {
    float: left;
    width: 100px;
@@ -26,19 +33,23 @@ a {
    margin:  0;
 }
 
-.navbar-bg {
-   width: 100%;
-   height: 54px;
-   box-shadow: 0 0px 5px #000000;
+.navitem-static {
+   float: left;
+   width: 100px;
+   height: 38px;
+   background-color: #FE9720;
+   padding: 16px 16px 0px 16px;
+   margin:  0;
+   border-right: 1px solid #292929;
 }
 
 .navitem-selected {
    float: left;
    width: 100px;
-   padding: 16px;
+   height: 32px;
+   padding: 16px 16px 0px 16px;
    margin:  0;
-   background-color: #FE9720;
-   border-left: thin solid #000000;
+   border-bottom: 6px solid #FE9720;
 }
 
 .navitem:hover {
@@ -46,11 +57,46 @@ a {
 }
 
 .sidebar {
+   position: absolute;
+   margin: 0;
+   background: #191919;
    overflow-y: scroll;
-   overflow-x: hidden; height: 100%;
-   width:  100px;
+   margin-bottom: 0px;
+   top: 54px;
+   bottom: 0px;
+   width: 300px;
+}
+
+.sidebar-item {
+   width: 100%;
+   height: 54px;
+   background-color: #292929;
+   border-bottom: 2px solid #191919;
+   padding: 0;
+   margin: 0;
+}
+
+.friend {
+   padding: 16px 16px 16px 16px;
+   margin: 0;
+}
+
+.forceoverflow {
+   min-height: 1000px;
 }
 
 .clear {
    clear: left;
+}
+
+::-webkit-scrollbar {
+   width: 6px;
+}
+::-webkit-scrollbar-track {
+}
+::-webkit-scrollbar-thumb {
+   background: #FE9720;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+   background: #FE9720;
 }
