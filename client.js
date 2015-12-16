@@ -1,6 +1,11 @@
 var fs = require('fs');
 var osenv = require('osenv');
 var net = require('net');
+var electron = require('electron');
+var app = electron.app;
+var ipc = electron.ipcMain;
+var BrowserWindow = electron.BrowserWindow;
+var mainWindow;
 
 var user = {};
 var servers = [];
@@ -42,6 +47,7 @@ function add_friend(name) {
    save_config();
 }
 
+/*
 var client = new net.Socket();
 client.connect(6667, '127.0.0.1', function() {
    client.write('user_connect:' + user['name']);
@@ -74,8 +80,17 @@ client.on('close', function() {
 function quit() {
    client.destroy();
    save_config();
-}
+}*/
 
-load_config();
-client.write('user_connect:' + user['name']);
-client.write('send_message:octalus:hello world\:test');
+//load_config();
+//client.write('user_connect:' + user['name']);
+//client.write('send_message:octalus:hello world\:test');
+app.on('ready', function() {
+   mainWindow = new BrowserWindow({width: 800, height: 600, frame: false});
+
+   mainWindow.loadURL('file://' + __dirname + '/web/friends.html');
+
+   mainWindow.on('closed', function() {
+      mainWindow = null;
+   });
+});

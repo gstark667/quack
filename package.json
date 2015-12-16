@@ -5,5 +5,11 @@
       "net": "*",
       "osenv": "*",
       "fs": "*"
+   },
+   "scripts": {
+    "start": "electron client.js"
+   },
+   "devDependencies": {
+    "electron-prebuilt": "0.35.0"
    }
 }
