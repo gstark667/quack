@@ -124,10 +124,20 @@ a {
    bottom: 0;
    border: 6px solid #101010;
    border-left: none;
+   resize: none;
 }
 
 .chat-input:focus {
    outline: none;
+}
+
+.chat-message-left {
+   width: 100%;
+}
+
+.chat-message-right {
+   width: 100%;
+   text-align: right;
 }
 
 .content {

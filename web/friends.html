@@ -6,6 +6,7 @@
    </head>
    <script>
       var shift_down = false;
+      var user_name  = 'Octalus';
       function init() {
          document.getElementById("chat-input").addEventListener("keydown", function(e) {
             if(e.keyCode === 16)
@@ -18,7 +19,7 @@
                submit_chat();
          });
 
-     }
+      }
 
       function select_sideitem(id) {
          selected = document.getElementsByClassName('sideitem-inner-selected');
@@ -36,8 +37,18 @@
 
       function submit_chat() {
          var chat_input = document.getElementById('chat-input');
-         alert(chat_input.value);
+         add_message(user_name, true, chat_input.value);
          clear_input();
+      }
+
+      function add_message(user_name, is_this, message) {
+         var new_message = document.createElement('div');
+         if(is_this)
+            new_message.className = 'chat-message-right';
+         else
+            new_message.className = 'chat-message-left';
+         new_message.innerHTML = '<font color="#FE9720">' + user_name + '</font>' + ':' + message;
+         document.getElementById('chat-history').appendChild(new_message);
       }
    </script>
    <body onload="init()">
@@ -70,9 +81,7 @@
          </div>
       </div>
       <div class="content">
-         <div class="chat-history" id="chat-history">
-<div class="forceoverflow"></div>
-         </div>
+         <div class="chat-history" id="chat-history"></div>
          <textarea class="chat-input" id="chat-input"></textarea>
       </div>
    </body>
