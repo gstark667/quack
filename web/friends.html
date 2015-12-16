@@ -4,7 +4,43 @@
       <link rel="stylesheet" type="text/css" href="css/style.css">
       <title>quack</title>
    </head>
-   <body>
+   <script>
+      var shift_down = false;
+      function init() {
+         document.getElementById("chat-input").addEventListener("keydown", function(e) {
+            if(e.keyCode === 16)
+               shift_down = true;
+         });
+         document.getElementById("chat-input").addEventListener("keyup", function(e) {
+            if(e.keyCode === 16)
+               shift_down = false;
+            if(e.keyCode === 13 && !shift_down)
+               submit_chat();
+         });
+
+     }
+
+      function select_sideitem(id) {
+         selected = document.getElementsByClassName('sideitem-inner-selected');
+         for(x in selected)
+         {
+            selected[x].className = 'sideitem-inner';
+         }
+
+         document.getElementById(id).children[0].className = 'sideitem-inner-selected';
+      }
+
+      function clear_input() {
+         document.getElementById('chat-input').value = '';
+      }
+
+      function submit_chat() {
+         var chat_input = document.getElementById('chat-input');
+         alert(chat_input.value);
+         clear_input();
+      }
+   </script>
+   <body onload="init()">
       <div class="navbar-bg">
          <div class="navbar">
             <div class="navitem-static">QUACK</div>
@@ -16,9 +52,28 @@
          <div class="clear"/>
       </div>
       <div class="sidebar">
-         <div class="sidebar-item">
-            <div class="friend">Octalus</div>
+         <!--maybe use hashes for id?-->
+         <div class="sideitem" id="Octalus" onclick="select_sideitem('Octalus')">
+            <div class="sideitem-inner-selected" >
+               <div class="friend">Octalus</div>
+            </div>
          </div>
+         <div class="sideitem" id="FierceDiety8" onclick="select_sideitem('FierceDiety8')">
+            <div class="sideitem-inner">
+               <div class="friend">FierceDiety8</div>
+            </div>
+         </div>
+         <div class="sideitem" id="NekoMimiLord" onclick="select_sideitem('NekoMimiLord')">
+            <div class="sideitem-inner">
+               <div class="friend">NekoMimiLord</div>
+            </div>
+         </div>
+      </div>
+      <div class="content">
+         <div class="chat-history" id="chat-history">
+<div class="forceoverflow"></div>
+         </div>
+         <textarea class="chat-input" id="chat-input"></textarea>
       </div>
    </body>
 </html>

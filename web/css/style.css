@@ -24,6 +24,7 @@ a {
    width: 100%;
    height: 54px;
    box-shadow: 0 0px 5px #000000;
+   -webkit-app-region: drag;
 }
 
 .navitem {
@@ -31,6 +32,7 @@ a {
    width: 100px;
    padding: 16px;
    margin:  0;
+   -webkit-app-region: no-drag;
 }
 
 .navitem-static {
@@ -61,24 +63,80 @@ a {
    margin: 0;
    background: #191919;
    overflow-y: scroll;
+   overflow-x: hidden;
    margin-bottom: 0px;
    top: 54px;
    bottom: 0px;
    width: 300px;
 }
 
-.sidebar-item {
+.sideitem {
    width: 100%;
    height: 54px;
-   background-color: #292929;
+   background-color: #232323;
    border-bottom: 2px solid #191919;
    padding: 0;
    margin: 0;
+   overflow: hidden;
+}
+
+.sideitem-inner {
+   background-color: #232323;
+   margin: 0;
+   padding: 0;
+}
+
+.sideitem-inner:hover {
+   background-color: #191919;
+}
+
+.sideitem-inner-selected {
+   background-color: #232323;
+   border-left: 6px solid #FE9720;
 }
 
 .friend {
    padding: 16px 16px 16px 16px;
    margin: 0;
+}
+
+.chat-history {
+   position: absolute;
+   margin: 0;
+   background: #191919;
+   overflow-y: scroll;
+   overflow-x: hidden;
+   margin-bottom: 0px;
+   top: 0px;
+   bottom: 100px;
+   right: 0;
+   left: 0;
+   word-wrap: break-word;
+}
+
+.chat-input {
+   color: #FFFFFF;
+   background-color: #191919;
+   position: absolute;
+   width: 100%;
+   height: 100px;
+   right: 0;
+   bottom: 0;
+   border: 6px solid #101010;
+   border-left: none;
+}
+
+.chat-input:focus {
+   outline: none;
+}
+
+.content {
+   position: absolute;
+   left: 300px;
+   right: 0;
+   top: 54px;
+   bottom: 0px;
+   background-color: #191919;
 }
 
 .forceoverflow {
@@ -93,6 +151,7 @@ a {
    width: 6px;
 }
 ::-webkit-scrollbar-track {
+   background: #101010;
 }
 ::-webkit-scrollbar-thumb {
    background: #FE9720;
