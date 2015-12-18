@@ -50,6 +50,11 @@
          new_message.innerHTML = '<font color="#FE9720">' + user_name + '</font>' + ':' + message;
          document.getElementById('chat-history').appendChild(new_message);
       }
+
+      var ipc = require('electron').ipcRenderer;
+      function exit() {
+         ipc.send('exit');
+      }
    </script>
    <body onload="init()">
       <div class="navbar-bg">
@@ -59,7 +64,7 @@
             <a href="groups.html"><div class="navitem">Groups</div></a>
             <a href="#"><div class="navitem">Call</div></a>
             <a href="#"><div class="navitem">Options</div></a>
-            <img src="img/cross.svg" class="exit"/>
+            <img src="img/cross.svg" class="exit" onclick="exit()"></div>
          </div>
          <div class="clear"/>
       </div>

@@ -57,6 +57,11 @@ app.on('ready', function() {
    });
 });
 
+ipc.on('exit', function() {
+   mainWindow.destroy();
+});
+
+/*
 var client = new net.Socket();
 client.connect(6667, '127.0.0.1', function() {
    client.write('user_connect:' + user['name']);
@@ -89,7 +94,7 @@ client.on('close', function() {
 function quit() {
    client.destroy();
    save_config();
-}
+}*/
 
 //load_config();
 //client.write('user_connect:' + user['name']);
